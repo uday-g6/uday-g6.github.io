@@ -1,0 +1,111 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@plugin "@tailwindcss/typography";
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  --background: 0 0% 98%;
+  --foreground: 0 0% 7%;
+
+  --card: 0 0% 96%;
+  --card-foreground: 0 0% 7%;
+  --card-border: 0 0% 88%;
+
+  --primary: 38 62% 47%;
+  --primary-foreground: 0 0% 98%;
+
+  --secondary: 0 0% 94%;
+  --secondary-foreground: 0 0% 7%;
+
+  --muted: 0 0% 92%;
+  --muted-foreground: 0 0% 45%;
+
+  --accent: 38 62% 47%;
+  --accent-foreground: 0 0% 98%;
+
+  --border: 0 0% 88%;
+  --input: 0 0% 88%;
+  --ring: 38 62% 47%;
+
+  --app-font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --app-font-serif: 'Cormorant Garamond', 'Georgia', serif;
+  --app-font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+  --radius: 0px;
+
+  --gold: #B8892F;
+  --gold-light: #D4A84B;
+  --cream: #F5EFE0;
+  --ink: #111111;
+}
+
+@theme inline {
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+  --font-sans: var(--app-font-sans);
+  --font-serif: var(--app-font-serif);
+  --font-mono: var(--app-font-mono);
+  --radius-sm: 0px;
+  --radius-md: 0px;
+  --radius-lg: 0px;
+}
+
+@layer base {
+  * { @apply border-border; }
+  body {
+    background-color: #F8F5EF;
+    color: #111111;
+    font-family: var(--app-font-sans);
+    -webkit-font-smoothing: antialiased;
+    scroll-behavior: smooth;
+  }
+}
+
+.serif { font-family: var(--app-font-serif); }
+.mono  { font-family: var(--app-font-mono); }
+
+/* Marquee */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.marquee-track {
+  display: flex;
+  white-space: nowrap;
+  animation: marquee 28s linear infinite;
+}
+.marquee-track:hover { animation-play-state: paused; }
+
+/* Diagonal section separator */
+.clip-diagonal {
+  clip-path: polygon(0 0, 100% 0, 100% 88%, 0 100%);
+}
+
+/* Hover underline */
+.hover-line {
+  position: relative;
+}
+.hover-line::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--gold);
+  transition: width 0.3s ease;
+}
+.hover-line:hover::after { width: 100%; }
